@@ -10,8 +10,10 @@ use App\Controller\Admin\SkillCrudController;
 use App\Controller\Admin\TechnologyCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Option\ColorScheme;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,9 +30,19 @@ class DashboardController extends AbstractDashboardController
         );
     }
 
+    public function configureAssets(): Assets
+    {
+        return Assets::new()
+            ->addAssetMapperEntry('app')
+            ->addCssFile('styles/admin.css');
+    }
+
     public function configureDashboard(): Dashboard
     {
-        return Dashboard::new()->setTitle('Mon Portfolio — Admin');
+        return 
+            Dashboard::new()->setTitle('Mon Portfolio — Admin')
+            ->setDefaultColorScheme(ColorScheme::LIGHT);
+;
     }
 
     public function configureMenuItems(): iterable

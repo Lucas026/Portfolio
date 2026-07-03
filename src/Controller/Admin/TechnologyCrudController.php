@@ -15,14 +15,11 @@ class TechnologyCrudController extends AbstractCrudController
         return Technology::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+        yield TextField::new('name', 'Nom');
+        yield TextField::new('icon', 'Icône')->hideOnIndex(); // cache la colonne moche sur la liste
     }
-    */
+    
 }
