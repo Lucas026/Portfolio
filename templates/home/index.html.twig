@@ -1,29 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil — Mon Portfolio{% endblock %}
+{% block title %}Accueil — Portfolio{% endblock %}
 
 {% block body %}
-    <section class="max-w-5xl mx-auto px-6 py-24 text-center">
-        <h1 class="text-5xl font-bold text-slate-900 mb-4">Salut, je suis Lucas 👋</h1>
-        <p class="text-lg text-slate-600 max-w-xl mx-auto">
-            Développeur passionné par le web et les projets Symfony.
+    <section class="max-w-3xl mx-auto px-6 pt-24 pb-20">
+        <p class="text-sm text-ink-dim mb-4">Développeur Symfony</p>
+        <h1 class="font-display text-5xl leading-[1.15] mb-6">
+            Je construis des applications web claires et durables.
+        </h1>
+        <p class="text-ink-dim max-w-lg leading-relaxed">
+            Je conçois des outils sur mesure, pensés pour être simples à utiliser et faciles à maintenir dans le temps.
         </p>
     </section>
 
     {% if featuredProjects|length > 0 %}
-    <section class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-2xl font-bold text-slate-900 mb-8">Projets récents</h2>
-        <div class="grid md:grid-cols-3 gap-6">
+    <section class="max-w-3xl mx-auto px-6 py-16 border-t border-line">
+        <h2 class="font-display text-2xl mb-10">Projets récents</h2>
+        <div class="space-y-10">
             {% for project in featuredProjects %}
-                <a href="{{ path('app_project_show', {slug: project.slug}) }}"
-                   class="block bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition">
-                    {% if project.coverImage %}
-                        <img src="{{ asset('images/' ~ project.coverImage) }}" alt="{{ project.title }}" class="w-full h-40 object-cover">
-                    {% endif %}
-                    <div class="p-5">
-                        <h3 class="font-semibold text-slate-900 mb-1">{{ project.title }}</h3>
-                        <p class="text-sm text-slate-500">{{ project.shortDescription }}</p>
+                <a href="{{ path('app_project_show', {slug: project.slug}) }}" class="group block">
+                    <div class="flex items-baseline justify-between mb-2">
+                        <h3 class="font-display text-xl group-hover:text-accent transition">{{ project.title }}</h3>
+                        <span class="text-sm text-ink-dim opacity-0 group-hover:opacity-100 transition">Voir →</span>
                     </div>
+                    <p class="text-ink-dim leading-relaxed">{{ project.shortDescription }}</p>
                 </a>
             {% endfor %}
         </div>
@@ -31,13 +31,11 @@
     {% endif %}
 
     {% if skills|length > 0 %}
-    <section class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-2xl font-bold text-slate-900 mb-8">Compétences</h2>
-        <div class="flex flex-wrap gap-3">
+    <section class="max-w-3xl mx-auto px-6 py-16 border-t border-line">
+        <h2 class="font-display text-2xl mb-8">Compétences</h2>
+        <div class="flex flex-wrap gap-x-6 gap-y-3 text-ink-dim">
             {% for skill in skills %}
-                <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium">
-                    {{ skill.name }}
-                </span>
+                <span>{{ skill.name }}</span>
             {% endfor %}
         </div>
     </section>
